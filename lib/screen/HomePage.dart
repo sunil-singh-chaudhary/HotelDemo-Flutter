@@ -1,4 +1,4 @@
-import 'package:design_demo/screen/DetailsPage.dart';
+import 'package:design_demo/screen/UsersPage.dart';
 import 'package:design_demo/screen/SettingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
     const List<Widget> _widgetOptions = <Widget>[
       FirstPage(),
-      DetailsPage(),
+      UsersPage(),
       SettingsPage(),
     ];
 

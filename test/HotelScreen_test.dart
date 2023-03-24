@@ -1,5 +1,4 @@
 import 'package:design_demo/Routes/list_data.dart';
-import 'package:design_demo/main.dart';
 import 'package:design_demo/screen/HotelScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -43,9 +42,9 @@ void main() {
       expect(priceFinder, findsWidgets);
     }
 
-    // final decorationFinder = find.byWidgetPredicate(
-    //     (widget) => widget is DecoratedBox && widget.decoration != null);
-    // expect(decorationFinder, findsWidgets);
+    final decorationFinder = find.byWidgetPredicate(
+        (widget) => widget is DecoratedBox && widget.decoration != null);
+    expect(decorationFinder, findsWidgets);
 
     //  final decorationFinder = find.byWidgetPredicate((widget) => widget is DecoratedBox
     //   && widget.decoration != null && widget.decoration is BoxDecoration &&

@@ -1,7 +1,7 @@
 import 'package:design_demo/screen/FirstPage.dart';
 import 'package:flutter/material.dart';
 
-import '../screen/DetailsPage.dart';
+import '../screen/UsersPage.dart';
 import '../screen/HomePage.dart';
 import '../screen/NotFoundPage.dart';
 import '../screen/SettingsPage.dart';
@@ -15,7 +15,7 @@ class Routes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       home: (context) => HomePage(),
-      details: (context) => const DetailsPage(),
+      details: (context) => const UsersPage(),
       setting: (context) => const SettingsPage(),
       firstpage: (context) => const FirstPage(),
     };
@@ -26,7 +26,7 @@ class Routes {
       case home:
         return MaterialPageRoute(builder: (context) => HomePage());
       case details:
-        return MaterialPageRoute(builder: (context) => const DetailsPage());
+        return MaterialPageRoute(builder: (context) => const UsersPage());
       case firstpage:
         return MaterialPageRoute(builder: (context) => const FirstPage());
       case setting:

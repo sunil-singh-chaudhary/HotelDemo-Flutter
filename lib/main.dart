@@ -1,12 +1,11 @@
+import 'dart:async';
 import 'package:design_demo/Routes/AppTheme.dart';
-import 'package:design_demo/Routes/visibilityModel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
-import 'Routes/AppLocalizations.dart';
-import 'Routes/Routes.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'App.dart';
+import 'Repositories/UserRepository.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -16,41 +15,35 @@ void main() {
           kbackgroudColor, // Set the status bar color to transparent
     ),
   );
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Handles Flutter Errors
+  FlutterError.onError = (details) {
+    if (kDebugMode) {
+      FlutterError.dumpErrorToConsole(details);
+    } else {
+      final error = details.exception;
+      final stackTrace = details.stack ?? StackTrace.empty;
+      Zone.current.handleUncaughtError(error, stackTrace);
+    }
+  };
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<visibilityModel>(
-              create: (_) => visibilityModel())
-        ],
-        builder: (context, child) {
-          return MaterialApp(
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en', ' '),
-              Locale('es', ' '),
-            ],
-            title: AppLocalizations.of(context)?.translate('app_name') ??
-                'Hello', //AppLocalizations.of(context).getTranslate('title_Home'),
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            initialRoute: Routes.home,
-            routes: Routes.getRoutes(),
-            onGenerateRoute: Routes.generateRoute,
-          );
-        });
-  }
+  // Handles Dart Errors
+  runZonedGuarded<void>(
+    () {
+      runApp(App(userRepository: UserRepository()));
+    },
+    (error, stackTrace) {
+      debugPrint('Caught Dart Error');
+
+      if (kDebugMode) {
+        // In development, print [error] and [stackTrace].
+        print(error);
+        print(stackTrace);
+      } else {
+        /// In production, report to an error tracking system.
+      }
+    },
+    zoneSpecification: const ZoneSpecification(),
+    zoneValues: {},
+  );
 }

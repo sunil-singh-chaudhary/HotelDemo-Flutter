@@ -1,4 +1,4 @@
-import 'package:design_demo/screen/DetailsPage.dart';
+import 'package:design_demo/screen/UsersPage.dart';
 import 'package:design_demo/screen/HomePage.dart';
 import 'package:design_demo/screen/SettingsPage.dart';
 
@@ -17,7 +17,7 @@ void main() {
     await tester.pump();
 
     // Verify that the ProfilePage is displayed.
-    expect(find.byType(DetailsPage), findsOneWidget);
+    expect(find.byType(UsersPage), findsOneWidget);
 
     // Tap on the third item in the bottom navigation bar.
     await tester.tap(find.byIcon(Icons.person));

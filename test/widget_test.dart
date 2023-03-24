@@ -1,3 +1,5 @@
+import 'package:design_demo/App.dart';
+import 'package:design_demo/Repositories/export_repositories.dart';
 import 'package:design_demo/Routes/AppTheme.dart';
 import 'package:design_demo/main.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,11 @@ void main() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: kbackgroudColor),
     );
+    UserRepository? userRepository;
     // Build the app.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(App(
+      userRepository: userRepository!,
+    ));
     // Get the current status bar color.
 
     int? statusBarColor;

@@ -39,7 +39,7 @@ class _searchBarPageState extends State<searchBarPage> {
   @override
   void dispose() {
     _controller.dispose();
-    focusNode.dispose();
+    //focusNode.dispose();
     super.dispose();
   }
 
