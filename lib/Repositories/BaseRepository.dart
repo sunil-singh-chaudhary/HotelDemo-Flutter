@@ -18,7 +18,6 @@ abstract class BaseRepository {
 
   final Client _client;
 
-  @protected
   final String baseUrl;
 
   void close() {
