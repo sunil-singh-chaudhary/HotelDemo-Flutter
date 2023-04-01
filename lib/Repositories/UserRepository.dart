@@ -8,13 +8,15 @@ class UserRepository extends BaseRepository {
   }) : super(client);
 
   Future<List<User>> getUsers() async {
-    final response = await get<List>('/users').catchError((error) {
-      if (error is RepositoryException) {
-        throw error;
-      } else {
-        throw const RepositoryException();
-      }
-    });
+    final response = await get<List>('/users').catchError(
+      (error) {
+        if (error is RepositoryException) {
+          throw error;
+        } else {
+          throw const RepositoryException();
+        }
+      },
+    );
 
     return response.map((e) => User.fromJson(e)).toList();
   }
