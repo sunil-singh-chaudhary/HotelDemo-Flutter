@@ -38,7 +38,7 @@ void main() {
   late List<MockUsers> users;
   late MockUserRepo userrepo;
   group('Cubit start', () {
-    setUp(() {
+    setUpAll(() {
       users = [
         MockUsers(),
         MockUsers()
@@ -167,12 +167,13 @@ void main() {
             UsersState(status: UsersStatus.failure, users: users),
           ],
         );
+        //gettign error when both comparision on expect
 
         // blocTest<UsersCubit, UsersState>(
         //   'emits [success] when it is updated',
         //   setUp: () {
-        //     when(userrepo.getUsers()).thenAnswer(
-        //         (_) async => const [User.empty(), User.empty(), User.empty()]);
+        //     when(userrepo.getUsers()).thenAnswer((realInvocation) =>
+        //         Future.value(const [User.empty(), User.empty(), User.empty()]));
         //   },
 
         //   build: () => UsersCubit(userrepo),
