@@ -1,16 +1,12 @@
-# design_demo
+# design_demo with TEST CASES
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+1.I have implemented and more focus on testing in flutter
+  so this project have all type of testing implemented
+  like using mokito for widgetesting and network uri testings
+2.also added Golden testing too
 
-A few resources to get you started if this is your first Flutter project:
+3, Bloc testing
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. widget testing using flutter_test api
