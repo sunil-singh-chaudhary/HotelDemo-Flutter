@@ -38,7 +38,9 @@ class _HomePageState extends State<HomePage> {
               Colors.transparent, // Set the background color to transparent
           elevation: 0, // Set the elevation to 0
         ),
-        body: _widgetOptions.elementAt(_selectedIndex),
+        body: MaterialApp(
+          home: _widgetOptions.elementAt(_selectedIndex),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: kbackgroudColor,
           elevation: 10,

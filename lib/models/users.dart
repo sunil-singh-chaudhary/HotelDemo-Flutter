@@ -23,7 +23,26 @@ class User extends Equatable {
     required this.website,
     required this.company,
   });
-
+  // User empty({
+  //   int? id,
+  //   String? name,
+  //   String? username,
+  //   String? email,
+  //   Address? address,
+  //   String? phone,
+  //   String? website,
+  //   Company? company,
+  // }) =>
+  //     const User(
+  //       id: 0,
+  //       name: '',
+  //       username: '',
+  //       email: '',
+  //       address: Address.empty(),
+  //       phone: '',
+  //       website: '',
+  //       company: Company.empty(),
+  //     );
   const User.empty()
       : id = 0,
         name = '',
