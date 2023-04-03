@@ -13,9 +13,13 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          UsersCubit(context.read<UserRepository>())..getUsers(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<UsersCubit>(
+          create: (context) =>
+              UsersCubit(context.read<UserRepository>())..getUsers(),
+        )
+      ],
       child: const UsersView(),
     );
   }
@@ -32,9 +36,10 @@ class UsersView extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case UsersStatus.initial:
-                return const Text('INITIAL STATE');
+                return const Text(key: Key('init'), 'INITIAL STATE');
               case UsersStatus.loading:
-                return const CircularProgressIndicator();
+                return const CircularProgressIndicator(
+                    key: Key('loadingCircle'));
               case UsersStatus.success:
                 return UsersLoaded(
                   users: state.users,

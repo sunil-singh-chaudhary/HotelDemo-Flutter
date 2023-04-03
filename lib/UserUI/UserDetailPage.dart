@@ -17,10 +17,12 @@ class UserDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          UserDetailCubit(context.read<UserRepository>())..getUser(userId),
-      child: const UserDetailView(),
+    return MaterialApp(
+      home: BlocProvider(
+        create: (context) =>
+            UserDetailCubit(context.read<UserRepository>())..getUser(userId),
+        child: const UserDetailView(),
+      ),
     );
   }
 }
