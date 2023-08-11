@@ -1,5 +1,4 @@
 import 'package:design_demo/App.dart';
-import 'package:design_demo/main.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 

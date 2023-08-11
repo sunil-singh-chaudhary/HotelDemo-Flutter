@@ -4,19 +4,18 @@ import 'package:design_demo/models/users.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'mock_user_repo_test.mocks.dart';
+class MockHttpClient extends Mock implements http.Client {}
 
-class HttpClient extends Mock implements http.Client {}
-
-@GenerateMocks([HttpClient])
 Future<void> main() async {
   late MockHttpClient client;
   late UserRepository userrep;
 
   setUp(() {
+    // Register a fallback value for Uri
+    registerFallbackValue(Uri());
+
     client = MockHttpClient();
     userrep = UserRepository(client: client);
   });
@@ -31,7 +30,7 @@ Future<void> main() async {
             '[{"id":1,"name":"Leanne Graham","username":"Bret","email":"Sincere@april.biz","address":{"street":"Kulas Light","suite":"Apt. 556","city":"Gwenborough","zipcode":"92998-3874","geo":{"lat":"-37.3159","lng":"81.1496"}},"phone":"1-770-736-8031 x56442","website":"hildegard.org","company":{"name":"Romaguera-Crona","catchPhrase":"Multi-layered client-server neural-net","bs":"harness real-time e-markets"}},{"id":2,"name":"Ervin Howell","username":"Antonette","email":"Shanna@melissa.tv","address":{"street":"Victor Plains","suite":"Suite 879","city":"Wisokyburgh","zipcode":"90566-7771","geo":{"lat":"-43.9509","lng":"-34.4618"}},"phone":"010-692-6593 x09125","website":"anastasia.net","company":{"name":"Deckow-Crist","catchPhrase":"Proactive didactic contingency","bs":"synergize scalable supply-chains"}}]';
         final res = Response(fakeBody, 200);
 
-        when(client.get(any)).thenAnswer((realInvocation) => Future.value(res));
+        when(() => client.get(any())).thenAnswer((_) => Future.value(res));
 
         // ACT
         final result = await userrep.getUsers();
@@ -48,7 +47,9 @@ Future<void> main() async {
           const fakeBody = '[]';
           final fakeResponse = Response(fakeBody, 200);
 
-          when((client.get(any))).thenAnswer((_) => Future.value(fakeResponse));
+          when(() => client.get(any()))
+              .thenAnswer((_) => Future.value(fakeResponse));
+
           // ACT
           final result = await userrep.getUsers();
           // ASSERT
@@ -62,7 +63,7 @@ Future<void> main() async {
           // ARRANGE
           final fakeResponse = Response('[]', 404);
 
-          when(client.get(any))
+          when(() => client.get(any()))
               .thenAnswer((realInvocation) => Future.value(fakeResponse));
 
           // ACT
@@ -78,7 +79,7 @@ Future<void> main() async {
         () async {
           // ARRANGE
 
-          when(client.get(any)).thenThrow(Exception());
+          when(() => client.get(any())).thenThrow(Exception());
 
           // ACT
           final result = userrep.getUsers();
@@ -91,7 +92,7 @@ Future<void> main() async {
         'Should throw an exception , when user is not found',
         () async {
           final fakeresponse = Response('{}', 404);
-          when(client.get(any))
+          when(() => client.get(any()))
               .thenAnswer((realInvocation) => Future.value(fakeresponse));
 
           final result = userrep.getUser(100);

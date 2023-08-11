@@ -1,5 +1,4 @@
 import 'package:design_demo/Routes/visibilityModel.dart';
-import 'package:design_demo/main.dart';
 import 'package:design_demo/screen/searchBarPage.dart';
 import 'package:flutter/material.dart';
 

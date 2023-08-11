@@ -3,16 +3,12 @@ import 'package:design_demo/UserBloc/user_state.dart';
 import 'package:design_demo/UserBloc/users_cubit.dart';
 import 'package:design_demo/models/users.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'user_state_test.mocks.dart';
+class MockUserRepo extends Mock implements UserRepository {}
 
-class UserRepo extends Mock implements UserRepository {}
-
-@GenerateMocks([UserRepo])
 void main() {
-  UserRepo userRepo;
+  MockUserRepo userRepo;
   late UsersCubit usersCubit;
   late UserRepository userRepository;
   setUp(() {

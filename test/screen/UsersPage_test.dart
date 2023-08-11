@@ -251,7 +251,7 @@ void main() {
       try {
         await tester.pumpAndSettle(const Duration(milliseconds: 500));
       } catch (error) {
-        print('error is-----> ${error}');
+        debugPrint('error is---> $error');
       }
 
       expect(find.byType(UserDetailView),
