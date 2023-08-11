@@ -13,7 +13,7 @@ Future<void> main() async {
   late UserRepository userrep;
 
   setUp(() {
-    // Register a fallback value for Uri
+    // Register a fallback value for Uri for adding any() below
     registerFallbackValue(Uri());
 
     client = MockHttpClient();
@@ -64,7 +64,7 @@ Future<void> main() async {
           final fakeResponse = Response('[]', 404);
 
           when(() => client.get(any()))
-              .thenAnswer((realInvocation) => Future.value(fakeResponse));
+              .thenAnswer((_) => Future.value(fakeResponse));
 
           // ACT
           final result = userrep.getUsers();
