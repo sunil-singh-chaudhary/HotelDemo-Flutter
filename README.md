@@ -1,12 +1,10 @@
-# design_demo with TEST CASES
+# DEMO User Fetch HTTP_CLIENT with TEST CASES
 
 
+1. I have implemented and more focus on testing in flutter
+   so this project have all type of testing implemented
+   like using mocktail and network request testings
 
-1.I have implemented and more focus on testing in flutter
-  so this project have all type of testing implemented
-  like using mokito for widgetesting and network uri testings
-2.also added Golden testing too
+3. Bloc testing with CUBIT Implemented
 
-3, Bloc testing
-
-4. widget testing using flutter_test api
+4. widget testing using Mocktail
